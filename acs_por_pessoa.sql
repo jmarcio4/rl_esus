@@ -1,4 +1,4 @@
--- View: rl_esus."ACS_POR_PESSOA"
+--- View: rl_esus."ACS_POR_PESSOA"
 
 DROP VIEW if exists rl_esus."ACS_POR_PESSOA";
 
