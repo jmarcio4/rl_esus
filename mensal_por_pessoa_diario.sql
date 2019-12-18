@@ -1,0 +1,193 @@
+-- View: rl_esus."MENSAL_POR_PESSOA_DIARIO"
+
+DROP VIEW if exists rl_esus."MENSAL_POR_PESSOA_DIARIO";
+
+CREATE OR REPLACE VIEW rl_esus."MENSAL_POR_PESSOA_DIARIO" AS 
+ SELECT tb_cds_prof.nu_cnes,
+    ( SELECT tb_localidade.no_localidade AS no_municipio
+           FROM tb_localidade
+          WHERE tb_localidade.co_localidade = (( SELECT tb_adm_municipal.co_localidade
+                   FROM tb_adm_municipal
+                 LIMIT 1))) AS no_municipio,
+    tb_dim_unidade_saude.no_unidade_saude,
+    tb_cds_prof.nu_cns,
+    pp.no_profissional AS no_pessoa_fisica,
+    tb_cbo.co_cbo_2002,
+    tb_cbo.no_cbo,
+    tb_cds_visita_dom_desfecho.no_cds_visita_dom_desfecho,
+    to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'YYYY-MM'::text) AS "total_mÊs",
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '01'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_1,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '02'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_2,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '03'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_3,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '04'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_4,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '05'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_5,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '06'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_6,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '07'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_7,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '08'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_8,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '09'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_9,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '10'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_10,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '11'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_11,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '12'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_12,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '13'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_13,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '14'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_14,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '15'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_15,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '16'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_16,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '17'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_17,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '18'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_18,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '19'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_19,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '20'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_20,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '21'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_21,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '22'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_22,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '23'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_23,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '24'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_24,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '25'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_25,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '26'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_26,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '27'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_27,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '28'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_28,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '29'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_29,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '30'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_30,
+    count(
+        CASE
+            WHEN to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'DD'::text) = '31'::text THEN 1
+            ELSE NULL::integer
+        END) AS dia_31,
+    count(DISTINCT tb_cds_visita_domiciliar.co_seq_cds_visita_domiciliar) AS total_mes
+   FROM tb_cds_visita_domiciliar
+     JOIN tb_cds_visita_dom_desfecho ON tb_cds_visita_domiciliar.co_cds_visita_dom_desfecho = tb_cds_visita_dom_desfecho.co_cds_visita_dom_desfecho
+     LEFT JOIN tb_cds_ficha_visita_domiciliar ON tb_cds_visita_domiciliar.co_cds_ficha_visita_domiciliar = tb_cds_ficha_visita_domiciliar.co_seq_cds_ficha_visita_dom
+     LEFT JOIN tb_cds_prof ON tb_cds_ficha_visita_domiciliar.co_cds_prof = tb_cds_prof.co_seq_cds_prof
+     LEFT JOIN tb_dim_unidade_saude ON tb_cds_prof.nu_cnes::text = tb_dim_unidade_saude.nu_cnes::text
+     JOIN tb_dim_profissional pp ON tb_cds_prof.nu_cns::text = pp.nu_cns::text
+     JOIN tb_cbo ON tb_cds_prof.nu_cbo_2002::text = tb_cbo.co_cbo_2002::text
+  GROUP BY ( SELECT tb_localidade.no_localidade AS no_municipio
+           FROM tb_localidade
+          WHERE tb_localidade.co_localidade = (( SELECT tb_adm_municipal.co_localidade
+                   FROM tb_adm_municipal
+                 LIMIT 1))), tb_cbo.co_cbo_2002, tb_cbo.no_cbo, tb_cds_visita_dom_desfecho.no_cds_visita_dom_desfecho, tb_cds_prof.nu_cnes, tb_dim_unidade_saude.no_unidade_saude, tb_cds_prof.nu_cns, pp.no_profissional, to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'YYYY-MM'::text)
+  ORDER BY tb_cds_prof.nu_cnes, tb_cds_prof.nu_cns, to_char(tb_cds_ficha_visita_domiciliar.dt_ficha, 'YYYY-MM'::text);
+
+ALTER TABLE rl_esus."MENSAL_POR_PESSOA_DIARIO"
+  OWNER TO postgres;
+GRANT ALL ON TABLE rl_esus."MENSAL_POR_PESSOA_DIARIO" TO postgres;
+GRANT ALL ON TABLE rl_esus."MENSAL_POR_PESSOA_DIARIO" TO pmaq;
+GRANT ALL ON TABLE rl_esus."MENSAL_POR_PESSOA_DIARIO" TO relatorio;
